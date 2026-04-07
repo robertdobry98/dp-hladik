@@ -1,0 +1,47 @@
+.menu {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    gap: 20px;
+    padding: 5em;
+    border: 1px solid black;
+    justify-content: center;
+    position: relative;   /* IMPORTANT */
+    overflow: hidden;     /* prevents blur overflow */
+    z-index: 1;
+}
+
+.menu::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("solar.png");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35;        
+    filter: blur(3px);   
+    z-index: -1;
+}
+
+button {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2em;
+    background-color: greenyellow;
+    border-radius: 5px;
+}
+
+.full-row {
+    grid-column: span 2;
+}
+
+.title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2em;
+    text-align: center;
+}
+
+
+body {
+    background-color: rgb(252, 238, 120);
+    align-items: center;
+    justify-content: center;
+}
