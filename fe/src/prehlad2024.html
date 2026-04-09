@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prehlad 2024</title>
+    <link rel="stylesheet" type="text/css" href="prehlad.css">
+</head>
+<body>
+
+<select id="mode" onchange="loadData(2024)">
+    <option value="daily">Daily</option>
+    <option value="weekly">Weekly</option>
+    <option value="monthly">Monthly</option>
+</select>
+<h1>
+    POCASIE 2024
+</h1>
+<div class="table-container">
+<table id="dataTable" border="1" id="dataTable">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Production Power</th>
+            <th>Temperature</th>
+            <th>Solar Radiation</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div>
+<canvas class=chart id="chart" width="800" height="400"></canvas>
+<canvas class=chart id="chart2" width="800" height="400"></canvas>
+<canvas class=chart id="chart3" width="800" height="400"></canvas>
+    <div>
+        <a href="index.html">
+            <button class="but">Späť na hlavné menu</button>
+        </a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

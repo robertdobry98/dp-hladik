@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Energy Dashboard</title>
-    <style>
-        body {
+body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background-color: #f5f7fa;
+            background-color: rgb(252, 238, 120);
         }
 
         h2, h3 {
@@ -20,19 +15,20 @@
             margin-top: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #333;
         }
 
         /* Table */
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: white;
+            background-color: rgb(255, 238, 163);
         }
 
         /* Header */
         thead {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #ffbb00;
+            color: rgb(0, 0, 0);
             position: sticky;
             top: 0;
         }
@@ -65,38 +61,18 @@
         h1 {
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
-    </style>
-</head>
-<body>
 
-<select id="mode" onchange="loadData()">
-    <option value="daily">Daily</option>
-    <option value="weekly">Weekly</option>
-    <option value="monthly">Monthly</option>
-</select>
-<h1>
-    POCASIE 2025
-</h1>
-<div class="table-container">
-<table id="dataTable" border="1" id="dataTable">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Production Power</th>
-            <th>Temperature</th>
-            <th>Solar Radiation</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-</div>
-<canvas id="chart" width="800" height="400"></canvas>
-    <div>
-        <a href="index.html">
-            <button class="but">Späť na hlavné menu</button>
-        </a>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+        .chart {
+            background-color: rgb(255, 238, 163);
+            border: 1px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        button {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2em;
+            background-color: greenyellow;
+            border-radius: 5px;
+        }

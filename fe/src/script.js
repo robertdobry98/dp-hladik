@@ -1,12 +1,17 @@
 let chart;
+let chart2;
+let chart3;
 
-async function loadData() {
+async function loadData(year) {
     const mode = document.getElementById("mode").value;
+    console.log(`${year} `);
 
-    const res = await fetch(`http://localhost:5000/data?mode=${mode}`);
+    const res = await fetch(`http://localhost:5000/data${year}?mode=${mode}`);
     const data = await res.json();
 
     if (chart) chart.destroy();
+    if (chart2) chart2.destroy();
+    if (chart3) chart3.destroy();
 
     chart = new Chart(document.getElementById("chart"), {
         type: "line",
@@ -17,17 +22,44 @@ async function loadData() {
                     label: "Production Power",
                     data: data.production
                 },
-                {
-                    label: "Temperature",
-                    data: data.temp
-                },
+            ]
+        }
+    });
+
+    chart2 = new Chart(document.getElementById("chart2"), {
+        type: "line",
+        data: {
+            labels: data.labels,
+            datasets: [     
                 {
                     label: "Solar Radiation",
                     data: data.solar
                 }
             ]
+        },
+        options: {
+            scales: {
+                y: {
+                    min: -2,
+                    max: 2
+                }
+            }
+
         }
     });
+
+    chart3 = new Chart(document.getElementById("chart3"), {
+        type: "line",
+        data: {
+            labels: data.labels,
+            datasets: [
+                {
+                    label: "Temperature",
+                    data: data.temp
+                },
+            ]
+        }
+        });
 
     // ---- TABLE ----
     const tbody = document.querySelector("#dataTable tbody");
@@ -48,4 +80,4 @@ async function loadData() {
 }
 
 // Load default data when page opens
-loadData();
+loadData(2025);
