@@ -1,78 +1,89 @@
 body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: rgb(252, 238, 120);
-        }
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: rgb(252, 238, 120);
+    align-items: center;
+    justify-content: center;
+}
 
-        h2, h3 {
-            color: #333;
-        }
+.chart-name {
+    text-align: center;
+    margin-top: 20px;   
+}
 
-        /* Table container */
-        .table-container {
-            max-height: 400px;
-            overflow-y: auto;
-            margin-top: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border: 1px solid #333;
-        }
+h2, h3 {
+    color: #333;
+}
 
-        /* Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: rgb(255, 238, 163);
-        }
+/* Table container */
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid #333;
+}
 
-        /* Header */
-        thead {
-            background-color: #ffbb00;
-            color: rgb(0, 0, 0);
-            position: sticky;
-            top: 0;
-        }
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgb(255, 238, 163);
+}
 
-        /* Cells */
-        th, td {
-            padding: 12px 15px;
-            text-align: center;
-        }
+/* Header */
+thead {
+    background-color: #ffbb00;
+    color: rgb(0, 0, 0);
+    position: sticky;
+    top: 0;
+}
 
-        /* Rows */
-        tbody tr {
-            border-bottom: 1px solid #ddd;
-        }
+/* Cells */
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+}
 
-        tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
+/* Rows */
+tbody tr {
+    border-bottom: 1px solid #ddd;
+}
 
-        tbody tr:hover {
-            background-color: #f1f1f1;
-            cursor: pointer;
-        }
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
 
-        /* Borders */
-        table, th, td {
-            border: none;
-        }
+tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
 
-        h1 {
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
+/* Borders */
+table, th, td {
+    border: none;
+}
 
-        .chart {
-            background-color: rgb(255, 238, 163);
-            border: 1px solid #333;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-top: 20px;
-        }
+h1 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
-        button {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.2em;
-            background-color: greenyellow;
-            border-radius: 5px;
-        }
+.chart {
+    background-color: rgb(248, 237, 189);
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 20px 10px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    max-width: 1400px;
+    max-height: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2em;
+    background-color: greenyellow;
+    border-radius: 5px;
+}

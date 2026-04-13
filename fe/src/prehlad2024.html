@@ -6,30 +6,44 @@
 </head>
 <body>
 
-<select id="mode" onchange="loadData(2024)">
+<select id="mode" onchange="loadData()">
     <option value="daily">Daily</option>
     <option value="weekly">Weekly</option>
     <option value="monthly">Monthly</option>
 </select>
 <h1>
-    POCASIE 2024
+    PREHLAD 2024 
 </h1>
+<div id="config" data-year="2024"></div>
 <div class="table-container">
 <table id="dataTable" border="1" id="dataTable">
     <thead>
         <tr>
             <th>Date</th>
-            <th>Production Power</th>
-            <th>Temperature</th>
-            <th>Solar Radiation</th>
+            <th>Production Power [kW]</th>
+            <th>Temperature [°C]</th>
+            <th>Solar Radiation [W/m²]</th>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
 </div>
+<div class="chart-name">
+  <h2>Production Power [kW]</h2>
+</div>
 <canvas class=chart id="chart" width="800" height="400"></canvas>
+<div class="chart-name">
+  <h2>Solar Radiation [W/m²]</h2>
+</div>
 <canvas class=chart id="chart2" width="800" height="400"></canvas>
+<div class="chart-name">
+  <h2>Temperature [°C]</h2>
+</div>
 <canvas class=chart id="chart3" width="800" height="400"></canvas>
+<div class="chart-name">
+  <h2>Mixed</h2>
+</div>
+<canvas class=chart id="chart4" width="800" height="400"></canvas>
     <div>
         <a href="index.html">
             <button class="but">Späť na hlavné menu</button>

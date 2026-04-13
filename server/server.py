@@ -8,10 +8,12 @@ CORS(app)
 df = pd.read_csv("rok2025.csv")
 df["Date"] = pd.to_datetime(df["Date"])
 df.set_index("Date", inplace=True)
+df["Production_power"] = df["Production_power"] / 1000
 
 df2 = pd.read_csv("rok2024.csv")
 df2["Date"] = pd.to_datetime(df2["Date"])
 df2.set_index("Date", inplace=True)
+df2["Production_power"] = df2["Production_power"] / 1000
 
 @app.route("/")
 def index():
@@ -24,13 +26,13 @@ def get_data():
 
     if mode == "weekly":
         data = df.resample("W").agg({
-            "Production_power": "sum",
+            "Production_power": "mean",
             "Temp": "mean",
             "ALLSKY_SFC_SW_DWN": "mean"
         })
     elif mode == "monthly":
         data = df.resample("ME").agg({
-            "Production_power": "sum",
+            "Production_power": "mean",
             "Temp": "mean",
             "ALLSKY_SFC_SW_DWN": "mean"
         })
@@ -50,13 +52,13 @@ def get_data2():
     mode = request.args.get("mode", "daily")
     if mode == "weekly":
         data = df2.resample("W").agg({
-            "Production_power": "sum",
+            "Production_power": "mean",
             "Temp": "mean",
             "ALLSKY_SFC_SW_DWN": "mean"
         })
     elif mode == "monthly":
         data = df2.resample("ME").agg({
-            "Production_power": "sum",
+            "Production_power": "mean",
             "Temp": "mean",
             "ALLSKY_SFC_SW_DWN": "mean"
         })
