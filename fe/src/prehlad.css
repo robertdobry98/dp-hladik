@@ -15,7 +15,6 @@ h2, h3 {
     color: #333;
 }
 
-/* Table container */
 .table-container {
     max-height: 400px;
     overflow-y: auto;
@@ -25,14 +24,12 @@ h2, h3 {
     border: 1px solid #333;
 }
 
-/* Table */
 table {
     width: 100%;
     border-collapse: collapse;
     background-color: rgb(255, 238, 163);
 }
 
-/* Header */
 thead {
     background-color: #ffbb00;
     color: rgb(0, 0, 0);
@@ -40,13 +37,11 @@ thead {
     top: 0;
 }
 
-/* Cells */
 th, td {
     padding: 12px 15px;
     text-align: center;
 }
 
-/* Rows */
 tbody tr {
     border-bottom: 1px solid #ddd;
 }
@@ -60,7 +55,6 @@ tbody tr:hover {
     cursor: pointer;
 }
 
-/* Borders */
 table, th, td {
     border: none;
 }

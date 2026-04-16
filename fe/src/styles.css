@@ -1,13 +1,15 @@
 .menu {
-    display: grid;
-    grid-template-columns: 200px 200px;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
     padding: 5em;
     border: 1px solid black;
     justify-content: center;
-    position: relative;   /* IMPORTANT */
-    overflow: hidden;     /* prevents blur overflow */
+    position: relative;   
+    overflow: hidden; 
     z-index: 1;
+    width: 30%;
+    align-items: center;
 }
 
 .menu::before {
@@ -22,7 +24,6 @@
     z-index: -1;
 }
 
-
 .full-row {
     grid-column: span 2;
 }
@@ -32,7 +33,6 @@
     font-size: 2em;
     text-align: center;
 }
-
 
 body {
     background-color: rgb(252, 238, 120);
@@ -55,7 +55,6 @@ button {
     text-align: center;
 }
 
-
 .foto-div {
     border: 1px solid black;
 }
@@ -71,8 +70,8 @@ button {
     border-radius: 10px;
     font-size: 2em;
     font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(255, 185, 80);
-    width: 50%;
+    background-color: rgb(220, 241, 96);
+    width: 30%;
 }
 
 .vyhot-div {
@@ -83,16 +82,37 @@ button {
     flex-direction: column;
     align-items: center;
     min-width: auto;
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
-    background-color: rgb(162, 228, 245);
-    width: 50%;
+    background-color: rgb(2, 255, 255);
+    width: 40%;
+    margin: 10px;
+}
+
+.schema-div {
+    font-size: 2em;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: auto;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 153, 0);
+    width: 45%;
+}
+
+.schema-fotky {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .vyhot-fotky {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
     justify-content: space-around;
 }
 
@@ -104,17 +124,29 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+    margin: 10px;
     padding: 20px;
     border-radius: 10px;
-    background-color: rgb(228, 255, 164);
-    width: 50%;
+    background-color: rgb(0, 255, 21);
+    width: 35%;
 }
 
 img {
-    max-width: 100%;
+    max-width: 90%;
+    min-width: 90%;
     height: auto;
     border-radius: 15px;
     border: 1px solid black;
-    margin: 20px;
+    margin: 10px;
+}
+
+.popis {
+    font-size: 0.7em;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: left;
+    border: 1px solid black;
+    min-width: 90%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: aliceblue;
 }
