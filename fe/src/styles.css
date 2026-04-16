@@ -8,15 +8,22 @@
     position: relative;   
     overflow: hidden; 
     z-index: 1;
-    width: 30%;
+    width: 35%;
+    min-width: 400px;
     align-items: center;
+}
+
+.menu-tlacidla {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
 }
 
 .menu::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("assets/menu-bg.png");
+    background-image: url("assets/img/menu-bg.png");
     background-size: cover;
     background-position: center;
     opacity: 0.35;        
@@ -35,7 +42,6 @@
 }
 
 body {
-    background-color: rgb(252, 238, 120);
     align-items: center;
     justify-content: center;
     display: flex;
@@ -45,10 +51,11 @@ body {
 button {
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.2em;
-    background-color: greenyellow;
+    background-color: rgb(255, 255, 153);
     border-radius: 5px;
     padding: 10px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .back-button {
@@ -70,7 +77,7 @@ button {
     border-radius: 10px;
     font-size: 2em;
     font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(220, 241, 96);
+    background-color: rgb(255, 255, 153);
     width: 30%;
 }
 
@@ -84,7 +91,7 @@ button {
     min-width: auto;
     padding: 20px;
     border-radius: 10px;
-    background-color: rgb(2, 255, 255);
+    background-color: rgb(255, 255, 153);
     width: 40%;
     margin: 10px;
 }
@@ -100,7 +107,7 @@ button {
     margin: 10px;
     padding: 20px;
     border-radius: 10px;
-    background-color: rgb(255, 153, 0);
+    background-color: rgb(255, 255, 153);
     width: 45%;
 }
 
@@ -127,18 +134,18 @@ button {
     margin: 10px;
     padding: 20px;
     border-radius: 10px;
-    background-color: rgb(0, 255, 21);
+    background-color: rgb(255, 255, 153);
     width: 35%;
 }
 
-img {
+.fotky {
     max-width: 90%;
     min-width: 90%;
     height: auto;
     border-radius: 15px;
     border: 1px solid black;
     margin: 10px;
-}
+} 
 
 .popis {
     font-size: 0.7em;
@@ -149,4 +156,32 @@ img {
     padding: 10px;
     border-radius: 10px;
     background-color: aliceblue;
+}
+
+.welcome {
+    font-size: 1.2em;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    border: 1px solid black;
+    min-width: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 153);
+}
+
+.menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: sans-serif;
+    font-size: 1.5em;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 153);
+    justify-content: center;
+}
+
+a {
+  text-decoration: none;
 }
