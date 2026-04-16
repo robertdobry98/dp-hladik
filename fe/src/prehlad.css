@@ -86,4 +86,10 @@ button {
     font-size: 1.2em;
     background-color: greenyellow;
     border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 30px;
+}
+
+.back-button {
+    text-align: center;
 }
