@@ -82,3 +82,18 @@ button {
 .back-button {
     text-align: center;
 }
+
+.corr-button {
+    text-align: center;
+}
+
+.corr-div {
+    margin-top: 10px;
+    font-size: 2em;
+}
+
+.corr-img {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}

@@ -11,6 +11,7 @@
     width: 35%;
     min-width: 400px;
     align-items: center;
+    border-radius: 100px;
 }
 
 .menu-tlacidla {

@@ -2,11 +2,28 @@ let chart;
 let chart2;
 let chart3;
 let chart4;
+let img;
+
+
+async function loadCorr() {
+
+    const year = document.getElementById("config").dataset.year;
+    const res = await fetch(`http://localhost:5000/corr${year}`);
+    const data = await res.json();
+    document.getElementById('corr-div').textContent = `Korelacia solar power a production power je ${data.corr.toFixed(2)}`;
+    const container = document.getElementById('corr-img');
+    if (!img){
+        img = document.createElement('img');
+        img.src = `assets/img/correlation${year}.png`;
+        img.alt = `corr${year}`;
+        img.style.width = '700px';
+        container.appendChild(img);
+    }
+}
 
 async function loadData() {
     const mode = document.getElementById("mode").value;
     const year = document.getElementById("config").dataset.year;
-    console.log(year); 
     const res = await fetch(`http://localhost:5000/data${year}?mode=${mode}`);
     const data = await res.json();
     if (chart) chart.destroy();
@@ -32,7 +49,7 @@ async function loadData() {
             labels: data.labels,
             datasets: [     
                 {
-                    label: "Solar Radiation",
+                    label: "Solar Power",
                     data: data.solar,
                     borderColor: "orange"
                 }
@@ -77,7 +94,7 @@ async function loadData() {
                 borderColor: "red"
             },
             {
-                label: "Solar Radiation",
+                label: "Solar Power",
                 data: data.solar,
                 borderColor: "orange"
             }
