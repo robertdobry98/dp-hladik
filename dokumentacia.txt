@@ -1,0 +1,59 @@
+Projekt sa sklada z hlavnych dvoch oddelenych casti, ktorymi su:
+  1. Aplikacny server, tzv. backend. Je poskytovatelom dat. Pouzite technologie su python, a jeho kniznice pandas, flask, cors. Zdrojovy subor kod sa nachadza v subore server/server.py
+  2. Prezentacna vrstva, tzv. frontend. Je prijimatelom dat. Pouzite technologie su html, javascript, css. Zdrojove subory su rozdelene v zlozke fe.
+
+Blizsi popis aplikacie
+
+Aplikacny server (backend)
+
+Prvou vecou ktoru server spravi je, ze si nacita data zo suborov rok2024.csv a rok2025.csv.
+Kazdy z tychto suborov sa za pomoci kniznice Pandas nacita do samostatnej premennej typu DataFrame.
+Program za pomoci kniznice flask dokaze vytvorit API, s ktorym je mozne komunikovat cez protokol http.
+Tymto sposobom s nim komunikuje aj frontend. Ked sa server spusti, je defeaultne dostupny na adrese http://localhost:5000,
+kde http je nazov protokolu, localhost je domena (kedze server spustame iba lokalne tak je to localhost) 
+a 5000 je port na ktorom dany server pocuva. Funcionalita serveru je namapovana na tzv. endpointy. 
+K tym vieme pristupovat ked pri volani serveru pridame za adresu identifikator endpointu. Napriklad, ak chceme pristupit k 
+endpoitnu "moj-endpoint", spravime to http requestom na URL http://localhost:5000/moj-endpoint.
+
+Server obsahuje dokopy 4 endpointy ktorymi su:
+  data2024 - poskytuje data pre prehlad 2024
+  data2025 - poskytuje data pre prehlad 2025
+  corr2024 - poskytuje data pre informaciu o korelacii pre rok 2024
+  corr2025 - poskytuje data pre informaciu o korelacii pre rok 2025
+
+Data su poskytovane vo formate JSON, takze ked zavolam napriklad http://localhost:5000/corr2025, server vrati nasledovne data:
+{ "corr" : 0.9 }
+(Uvedena hodnota je len ilustracna) Frontend si tieto data spracuje, a zobrazi na prislusnej webovej stranke.
+
+Endpointy data2024 a data2025 pocas requestu prijmu informaciu, ci sa maju poskytovat data pre jednotlive dni, tyzdne alebo mesiace.
+Na zaklade toho urobi upravu dat a poskytne priemernu hodnotu kazdej veliciny za dane obdobie. V pripade ze je vybrana moznost daily, 
+sa nevykona ziadna uprava a data sa poslu tak ako su v zdrojovej tabulke.
+
+
+
+Prezentacna vrstva (Frontend)
+
+Vsetko suvisiace s touto castou projektu sa nachadza v zlozke fe. 
+Subory s priponou .html nesu obsah webovych stranok, tzn veci ako okna, tlacidla, texty, obrazky, tabulky grafy.. 
+Vsetky tieto komponenty je mozne zobrazit pomocou weboveho prehliadaca.
+Vstupny bod aplikacie, resp. Hlavne menu, je definovane v subore index.html. Nazov index.html je defaultnym entrypointom pripade
+v html stranok. Toto hlavne menu dalej obsahuje 6 tlacidiel, ktorych funkctionalita spociva v presmerovani na dalsiu prislusnu stranku.
+Napriklad tlacidlo s nazvom Prehlad 2025 vykona presmerovanie na subor prehlad2025.html, cize v browseri sa zobrazi stranka Prehlad 2025.
+
+Subory s priponou .css obsahuju styly resp. dizajn webovej stranky, cize veci ako farba komponentov, velkost, umiestnenie a dalsie. 
+Komponenty vieme dizajnovat jednotlivo, alebo aj mnozne na zaklade ich identifikatorov alebo pridelenych tried.
+
+Subor script.js skript napisany v jazyku JavaScript a jeho hlavnou ulohou je ziskavanie tzv. fetchovanie dat z backendu. 
+Obsahuje 2 funkcie loadData(), a loadCorr(). Kazda z funkcie si zisti z ktoreho roku chce fetchovat data. 
+Nasledne na zaklade toho zavola dany http request. 
+Priklad:
+Povezdme, ze sme v hlavnom menu, a chceme si zobrazit stranku Prehlad 2024. Klikneme na prislusne tlacidlo. 
+Zobrazi sa stranka prehlad2024.html. Tato stranka ma prepojenie na subor script.js, kde sa zavola funkcia loadData().
+Funkcia loadData() si na zaklade konfiguracneho objektu zisti ze ma zobrazit data pre rok 2024. 
+Nasledne vykona request na adresu http://localhost:5000/data2024. Backend odpovie s datami z roku 2024, 
+ktore funkcia loadData() prijme a vlozi naspat do tabuliek a grafov na stranke prehlad2024.html 
+
+Rovnakym sposobom funguje aj Stranka Prehlad 2025, a taktiez informacie o korelacii dat pre obidva roky.
+
+Rozdiel medzi loadData() a loadCorr() je ten, ze loadCorr() je zavolana na zaklade tlacidla, a nie automaticky pri zobrazeni stranky.
+

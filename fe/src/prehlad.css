@@ -1,5 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: monospace;
+    font-size: 1.5em;
     margin: 20px;
     align-items: center;
     justify-content: center;
@@ -71,7 +72,7 @@ h1 {
 }
 
 button {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: monospace;
     font-size: 1.2em;
     background-color: rgb(255, 255, 153);
     border-radius: 5px;
@@ -90,6 +91,7 @@ button {
 .corr-div {
     margin-top: 10px;
     font-size: 2em;
+    font-family: monospace;
 }
 
 .corr-img {

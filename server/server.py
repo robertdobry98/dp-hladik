@@ -24,23 +24,23 @@ df2=df2.round(2)
 @app.route('/corr2024')
 def correlation2024():
     corr = df2["Production_power"].corr(df2["ALLSKY_SFC_SW_DWN"])
-    plt.scatter(df2["ALLSKY_SFC_SW_DWN"], df2["Production_power"])
-    plt.xlabel("Solar Power (W/m²)")
-    plt.ylabel("Production Power (kW)")
-    plt.title("2024")
-    plt.savefig("correlation2024.png", dpi=300, bbox_inches="tight")
-    plt.close()
+    # plt.scatter(df2["ALLSKY_SFC_SW_DWN"], df2["Production_power"])
+    # plt.xlabel("Solar Power (W/m²)")
+    # plt.ylabel("Production Power (kW)")
+    # plt.title("2024")
+    # plt.savefig("correlation2024.png", dpi=300, bbox_inches="tight")
+    # plt.close()
     return jsonify({ "corr" : corr})
 
 @app.route('/corr2025')
 def correlation2025():
     corr = df["Production_power"].corr(df["ALLSKY_SFC_SW_DWN"])
-    plt.scatter(df["ALLSKY_SFC_SW_DWN"], df["Production_power"])
-    plt.xlabel("Solar Power (W/m²)")
-    plt.ylabel("Production Power (kW)")
-    plt.title("2025")
-    plt.savefig("correlation2025.png", dpi=300, bbox_inches="tight")
-    plt.close()
+    # plt.scatter(df["ALLSKY_SFC_SW_DWN"], df["Production_power"])
+    # plt.xlabel("Solar Power (W/m²)")
+    # plt.ylabel("Production Power (kW)")
+    # plt.title("2025")
+    # plt.savefig("correlation2025.png", dpi=300, bbox_inches="tight")
+    # plt.close()
     return jsonify({ "corr" : corr})
 
 @app.route("/")
@@ -49,9 +49,7 @@ def index():
 
 @app.route("/data2025")
 def get_data():
-
     mode = request.args.get("mode", "daily")
-
     if mode == "weekly":
         data = df.resample("W").agg({
             "Production_power": "mean",
@@ -66,7 +64,6 @@ def get_data():
         })
     else:
         data = df
-
     return jsonify({
         "labels": data.index.strftime("%Y-%m-%d").tolist(),
         "production": data["Production_power"].tolist(),
@@ -92,7 +89,6 @@ def get_data2():
         })
     else:
         data = df2
-
     return jsonify({
         "labels": data.index.strftime("%Y-%m-%d").tolist(),
         "production": data["Production_power"].tolist(),

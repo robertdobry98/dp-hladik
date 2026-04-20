@@ -12,6 +12,7 @@
     min-width: 400px;
     align-items: center;
     border-radius: 100px;
+    font-family: monospace;
 }
 
 .menu-tlacidla {
@@ -47,10 +48,11 @@ body {
     justify-content: center;
     display: flex;
     flex-direction: column;
+    font-family: monospace;
 }
 
 button {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: monospace;
     font-size: 1.2em;
     background-color: rgb(255, 255, 153);
     border-radius: 5px;
@@ -77,14 +79,14 @@ button {
     align-items: center;
     border-radius: 10px;
     font-size: 2em;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: monospace;
     background-color: rgb(255, 255, 153);
     width: 30%;
 }
 
 .vyhot-div {
     font-size: 2em;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: monospace;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -99,7 +101,7 @@ button {
 
 .schema-div {
     font-size: 2em;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: monospace;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -126,7 +128,7 @@ button {
 
 .panel-div {
     font-size: 2em;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: monospace;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -150,7 +152,7 @@ button {
 
 .popis {
     font-size: 0.7em;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: monospace;
     text-align: left;
     border: 1px solid black;
     min-width: 90%;
@@ -160,8 +162,8 @@ button {
 }
 
 .welcome {
-    font-size: 1.2em;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.5em;
+    font-family: monospace;
     text-align: center;
     border: 1px solid black;
     min-width: 90%;
@@ -174,8 +176,8 @@ button {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-family: sans-serif;
-    font-size: 1.5em;
+    font-family: monospace;
+    font-size: 1.8em;
     border: 1px solid black;
     padding: 10px;
     border-radius: 15px;
@@ -186,3 +188,33 @@ button {
 a {
   text-decoration: none;
 }
+
+.nasa-btn {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 400px;
+    justify-content: center;
+    align-items: center;
+}
+
+.nasa-img {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.nasa-text {
+    font-size: 2em;
+    font-family: monospace;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 153);
+    width: 35%;
+}
+
