@@ -57,3 +57,8 @@ Rovnakym sposobom funguje aj Stranka Prehlad 2025, a taktiez informacie o korela
 
 Rozdiel medzi loadData() a loadCorr() je ten, ze loadCorr() je zavolana na zaklade tlacidla, a nie automaticky pri zobrazeni stranky.
 
+V zlozke assets sa nachadzaju staticke subory ako obrazky a ikony, ktore sa na stranke zobrazuju v roznych sekciach.
+Tieto subory su vyuzivane najma na strankach pocasie.html, fotografie.html, info.html, na ktorych nie je na pozadi
+ziadna programovacia logika, ale je to len ciste zobrazenie textu/obrazkov. 
+
+Kazda stranka okrem hlavneho menu obsahuje tlacidlo "spat na hlavne menu", ktore obsahuje presmerovanie na stranku index.html

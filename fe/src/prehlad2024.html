@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Prehlad 2024</title>
+    <title>Prehľad 2024</title>
     <link rel="stylesheet" type="text/css" href="prehlad.css">
 </head>
 <body>
-
-<select id="mode" onchange="loadData()">
-    <option value="daily">Daily</option>
-    <option value="weekly">Weekly</option>
-    <option value="monthly">Monthly</option>
-</select>
 <h1>
-    PREHLAD 2024 
+    PREHĽAD 2024
 </h1>
+<select id="mode" onchange="loadData()">
+    <option value="daily">Denný</option>
+    <option value="weekly">Týždenný</option>
+    <option value="monthly">Mesačný</option>
+</select>
 <div id="config" data-year="2024"></div>
 <div class="table-container">
 <table id="dataTable" border="1" id="dataTable">
     <thead>
         <tr>
-            <th>Date</th>
-            <th>Production Power [kW]</th>
-            <th>Temperature [°C]</th>
-            <th>Solar Power [W/m²]</th>
+            <th>Dátum</th>
+            <th>Produkcia [kW]</th>
+            <th>Teplota [°C]</th>
+            <th>Svetelnosť [W/m²]</th>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
 </div>
+<div class="download-div">
+    <button onclick="downloadFile()">Uložiť tabuľku</button>
+</div>
 <div class="chart-name">
-  <h2>Production Power [kW]</h2>
+  <h2>Produkcia [kW]</h2>
 </div>
 <canvas class=chart id="chart" width="800" height="400"></canvas>
 <div class="chart-name">
-  <h2>Solar Radiation [W/m²]</h2>
+  <h2>Svetelnost [W/m²]</h2>
 </div>
 <canvas class=chart id="chart2" width="800" height="400"></canvas>
 <div class="chart-name">
-  <h2>Temperature [°C]</h2>
+  <h2>Tepolota [°C]</h2>
 </div>
 <canvas class=chart id="chart3" width="800" height="400"></canvas>
 <div class="chart-name">
-  <h2>Mixed</h2>
+  <h2>Spolu</h2>
 </div>
 <canvas class=chart id="chart4" width="800" height="400"></canvas>
 
     <div>
-        <button id="corr-btn" class="corr-button" onclick="loadCorr()">Correlation</button>
+        <button id="corr-btn" class="corr-button" onclick="loadCorr()">Korelácia</button>
         <div id="corr-div" class="corr-div"></div>
         <div class="corr-img" id="corr-img"></div>
     </div>

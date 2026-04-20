@@ -5,12 +5,18 @@ let chart4;
 let img;
 
 
+function downloadFile() {
+    const mode = document.getElementById("mode").value;
+    const year = document.getElementById("config").dataset.year;
+    window.location.href = `http://localhost:5000/download${year}?mode=${mode}`;
+}
+
 async function loadCorr() {
 
     const year = document.getElementById("config").dataset.year;
     const res = await fetch(`http://localhost:5000/corr${year}`);
     const data = await res.json();
-    document.getElementById('corr-div').textContent = `Korelacia solar power a production power je ${data.corr.toFixed(2)}`;
+    document.getElementById('corr-div').textContent = `Hodnoty svetelnosti a produkcie spolu korelujú na ${data.corr}%`;
     const container = document.getElementById('corr-img');
     if (!img){
         img = document.createElement('img');

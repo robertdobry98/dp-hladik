@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -11,36 +11,68 @@ df["Date"] = pd.to_datetime(df["Date"])
 df.set_index("Date", inplace=True)
 df["Production_power"] = df["Production_power"] / 1000
 df=df.round(2)
-# df["ALLSKY_SFC_SW_DWN"] = df["ALLSKY_SFC_SW_DWN"] * 1000
 
 df2 = pd.read_csv("rok2024.csv")
 df2["Date"] = pd.to_datetime(df2["Date"])
 df2.set_index("Date", inplace=True)
 df2["Production_power"] = df2["Production_power"] / 1000
 df2=df2.round(2)
-# df2["ALLSKY_SFC_SW_DWN"] = df2["ALLSKY_SFC_SW_DWN"] * 1000
+
+
+@app.route("/download2025")
+def download_file2025():
+    mode = request.args.get("mode", "daily")
+    if mode == "weekly":
+        data = df.resample("W").agg({
+            "Production_power": "mean",
+            "Temp": "mean",
+            "Solar_Power": "mean"
+        }).round(2)
+    elif mode == "monthly":
+        data = df.resample("ME").agg({
+            "Production_power": "mean",
+            "Temp": "mean",
+            "Solar_Power": "mean"
+        }).round(2)
+    else:
+        data = df
+    file_path = "prehlad2025.csv"
+    data.to_csv(file_path)
+    return send_file(file_path, as_attachment=True)
+
+
+@app.route("/download2024")
+def download_file2024():
+    mode = request.args.get("mode", "daily")
+    if mode == "weekly":
+        data = df2.resample("W").agg({
+            "Production_power": "mean",
+            "Temp": "mean",
+            "Solar_Power": "mean"
+        }).round(2)
+    elif mode == "monthly":
+        data = df2.resample("ME").agg({
+            "Production_power": "mean",
+            "Temp": "mean",
+            "Solar_Power": "mean"
+        }).round(2)
+    else:
+        data = df2
+    file_path = "prehlad2024.csv"
+    data.to_csv(file_path)
+    return send_file(file_path, as_attachment=True)
 
 
 @app.route('/corr2024')
 def correlation2024():
-    corr = df2["Production_power"].corr(df2["ALLSKY_SFC_SW_DWN"])
-    # plt.scatter(df2["ALLSKY_SFC_SW_DWN"], df2["Production_power"])
-    # plt.xlabel("Solar Power (W/m²)")
-    # plt.ylabel("Production Power (kW)")
-    # plt.title("2024")
-    # plt.savefig("correlation2024.png", dpi=300, bbox_inches="tight")
-    # plt.close()
-    return jsonify({ "corr" : corr})
+    corr = df2["Production_power"].corr(df2["Solar_Power"])
+    corr = (corr*100).round(2)
+    return jsonify({"corr" : corr})
 
 @app.route('/corr2025')
 def correlation2025():
-    corr = df["Production_power"].corr(df["ALLSKY_SFC_SW_DWN"])
-    # plt.scatter(df["ALLSKY_SFC_SW_DWN"], df["Production_power"])
-    # plt.xlabel("Solar Power (W/m²)")
-    # plt.ylabel("Production Power (kW)")
-    # plt.title("2025")
-    # plt.savefig("correlation2025.png", dpi=300, bbox_inches="tight")
-    # plt.close()
+    corr = df["Production_power"].corr(df["Solar_Power"])
+    corr = (corr*100).round(2)
     return jsonify({ "corr" : corr})
 
 @app.route("/")
@@ -54,21 +86,21 @@ def get_data():
         data = df.resample("W").agg({
             "Production_power": "mean",
             "Temp": "mean",
-            "ALLSKY_SFC_SW_DWN": "mean"
-        })
+            "Solar_Power": "mean"
+        }).round(2)
     elif mode == "monthly":
         data = df.resample("ME").agg({
             "Production_power": "mean",
             "Temp": "mean",
-            "ALLSKY_SFC_SW_DWN": "mean"
-        })
+            "Solar_Power": "mean"
+        }).round(2)
     else:
         data = df
     return jsonify({
         "labels": data.index.strftime("%Y-%m-%d").tolist(),
         "production": data["Production_power"].tolist(),
         "temp": data["Temp"].tolist(),
-        "solar": data["ALLSKY_SFC_SW_DWN"].tolist()
+        "solar": data["Solar_Power"].tolist()
     })
 
 
@@ -79,21 +111,22 @@ def get_data2():
         data = df2.resample("W").agg({
             "Production_power": "mean",
             "Temp": "mean",
-            "ALLSKY_SFC_SW_DWN": "mean"
-        })
+            "Solar_Power": "mean"
+        }).round(2)
+
     elif mode == "monthly":
         data = df2.resample("ME").agg({
             "Production_power": "mean",
             "Temp": "mean",
-            "ALLSKY_SFC_SW_DWN": "mean"
-        })
+            "Solar_Power": "mean"
+        }).round(2)
     else:
         data = df2
     return jsonify({
         "labels": data.index.strftime("%Y-%m-%d").tolist(),
         "production": data["Production_power"].tolist(),
         "temp": data["Temp"].tolist(),
-        "solar": data["ALLSKY_SFC_SW_DWN"].tolist()
+        "solar": data["Solar_Power"].tolist()
     })
 
 
