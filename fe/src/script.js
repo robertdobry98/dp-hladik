@@ -12,7 +12,6 @@ function downloadFile() {
 }
 
 async function loadCorr() {
-
     const year = document.getElementById("config").dataset.year;
     const res = await fetch(`http://localhost:5000/corr${year}`);
     const data = await res.json();

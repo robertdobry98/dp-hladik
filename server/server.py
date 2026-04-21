@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import prediction
 app = Flask(__name__)
 CORS(app)
 # Load CSV once
@@ -128,6 +128,23 @@ def get_data2():
         "temp": data["Temp"].tolist(),
         "solar": data["Solar_Power"].tolist()
     })
+
+
+@app.route("/predict", methods=['GET'])
+def predict():
+    solar = request.args.get('solar')
+    temp = request.args.get('temp')
+    day = request.args.get('day')
+    month = request.args.get('month')
+    model = prediction.trainModel()
+    new_data = pd.DataFrame({
+    "Solar_Power": [solar],
+    "Temp": [temp],
+    "day_of_year": [day],
+    "month" : [month]
+    })
+    value = prediction.predictValues(data=new_data, model=model)
+    return jsonify({"predictedValue" : round(value/1000,2) })
 
 
 if __name__ == "__main__":

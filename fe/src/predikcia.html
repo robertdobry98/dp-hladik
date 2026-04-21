@@ -8,11 +8,36 @@
 </head>
 <body>
     <h1 class="title">Predikcia</h1>
+        <div class="pred-body">
+        <form> 
+            <div class="predict-div">
+                <div class="pocasie-form">
+                    <span class="pred-info">Pocasie</span>
+                    <label for="name">Teplota (C):</label>    
+                    <input id="temp" type="text">
+                    <label for="name">Svetelnost (W/m2):</label>
+                    <input id="solar" type="text">
+                </div>
+                <div class="datum-form">
+                    <span class="pred-info">Datum</span>
+                    <label for="name">Den (1-31):</label>
+                    <input id="day" type="text">
+                    <label for="name">Mesiac (1-12):</label>
+                    <input id="month" type="text">
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+    <div id="predict-result"></div>
+    <button class="but" type="submit" onclick="getPrediction()">Spustit predikciu</button>
+    
+    
     <div>
         <a href="index.html">
             <button class="but">Späť na hlavné menu</button>
         </a>
     </div>
-    
+    <script src="predict.js"></script>
 </body>
 </html>

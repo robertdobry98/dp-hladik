@@ -218,3 +218,36 @@ a {
     width: 35%;
 }
 
+.predict-div {
+    display: grid;
+    grid-template-columns: 300px 300px;
+    gap: 15px;
+}
+
+.pocasie-form {
+    display: grid;
+    border: 1px solid black;
+    padding: 20px;
+    background-color: rgb(255, 255, 153);
+    border-radius: 10px;
+}
+
+.datum-form {
+    display: grid;
+    border: 1px solid black;
+    padding: 20px;
+    background-color: rgb(255, 255, 153);
+    border-radius: 10px;
+}
+
+.pred-info {
+    font-size: 2em;
+    text-align: center;
+    margin: 10px;
+}
+
+#predict-result {
+    font-family: monospace;
+    font-size: 2em;
+    margin: 20px;
+}
