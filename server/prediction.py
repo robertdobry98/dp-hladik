@@ -1,8 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_absolute_error, r2_score
-import random
 def trainModel():
     df = pd.read_csv("data-merged.csv")
     df["Date"] = pd.to_datetime(df["Date"])
