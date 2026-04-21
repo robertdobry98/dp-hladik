@@ -20,6 +20,9 @@ Server obsahuje dokopy 4 endpointy ktorymi su:
   data2025 - poskytuje data pre prehlad 2025
   corr2024 - poskytuje data pre informaciu o korelacii pre rok 2024
   corr2025 - poskytuje data pre informaciu o korelacii pre rok 2025
+  download2024 - poskytuje export tabulky 2024 do csv 
+  download2025 - poskytuje export tabulky 2025 do csv
+  predict - spusti predikcny model ktory na zaklade udajov existujucej tabulky vypocita pribliznu hodnotu pre zadanu hodnotu
 
 Data su poskytovane vo formate JSON, takze ked zavolam napriklad http://localhost:5000/corr2025, server vrati nasledovne data:
 { "corr" : 0.9 }
@@ -62,3 +65,21 @@ Tieto subory su vyuzivane najma na strankach pocasie.html, fotografie.html, info
 ziadna programovacia logika, ale je to len ciste zobrazenie textu/obrazkov. 
 
 Kazda stranka okrem hlavneho menu obsahuje tlacidlo "spat na hlavne menu", ktore obsahuje presmerovanie na stranku index.html
+
+
+Predikcia
+
+Prezentacna cast predikcie je realizovana v subore predikcia.html. Tato stranka obsahuje formular,
+kde pouzivatel zada vstupne parametre, pre ktore chce vypocitat predpoved produkcie. Zadavane hodnoty su
+ - svetelnost
+ - teplota
+ - den 
+ - mesiac
+Po zadani tychto hodnot je mozne kliknut na tlacidlo "Spustit predikciu". Toto tlacidlo je napojene na JavaScript subor
+predict.js, ktory obsahuje funkciu getPrediction(), ktora spracuje data vo formulari, a odosle http request na aplikacny server
+na endpoint /predict, ktory samotnu predikciu vykona za pomoci modelu RandomForestRegressor z kniznice Sklearn. Model funguje tak,
+ze najprv sa pozrie na tabulku s datami pre cely rok 2024 a 2025 a pochopi, ze pre ake hodnoty svetelnosti, teploty a datumu
+zodpovedaju ake hodnoty produkcie. Nasledne sa mu podhodia data z formulara ktore sme zadali, a na zaklade svojho
+treningu na datach z rokov 2024 a 2025 urci priblizny predpoklad pre nami zadane vstupy.
+Funkcionalita predikcie je realizovana v subore prediction.py a je volana aplikacnym serverom v endpointe /predict.
+Po skonceni predikcie server posle predikovanu hodnotu naspat frontendu, ktory ju zobrazi na zodpovedajucej stranke.
