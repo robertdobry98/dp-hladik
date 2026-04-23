@@ -1,8 +1,8 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, Response
 from waitress import serve
 from flask_cors import CORS
 import pandas as pd
-import prediction
+import prediction, io
 app = Flask(__name__)
 CORS(app)
 df = pd.read_csv("rok2025.csv")
@@ -20,6 +20,8 @@ df2=df2.round(2)
 
 @app.route("/download2025")
 def download_file2025():
+    print('/download2025')
+    output=io.StringIO()
     mode = request.args.get("mode", "daily")
     if mode == "weekly":
         data = df.resample("W").agg({
@@ -35,13 +37,18 @@ def download_file2025():
         }).round(2)
     else:
         data = df
-    file_path = "prehlad2025.csv"
-    data.to_csv(file_path)
-    return send_file(file_path, as_attachment=True)
+    data.to_csv(output, index=False)
+    return Response(
+        output.getvalue(),
+        mimetype="text/csv",
+        headers={"Content-Disposition": "attachment; filename=prehlad2025.csv"}
+    )
 
 
 @app.route("/download2024")
 def download_file2024():
+    print('/download2024')
+    output=io.StringIO()
     mode = request.args.get("mode", "daily")
     if mode == "weekly":
         data = df2.resample("W").agg({
@@ -57,19 +64,24 @@ def download_file2024():
         }).round(2)
     else:
         data = df2
-    file_path = "prehlad2024.csv"
-    data.to_csv(file_path)
-    return send_file(file_path, as_attachment=True)
+    data.to_csv(output, index=False)
+    return Response(
+        output.getvalue(),
+        mimetype="text/csv",
+        headers={"Content-Disposition": "attachment; filename=prehlad2024.csv"}
+    )
 
 
 @app.route('/corr2024')
 def correlation2024():
+    print('/corr2024')
     corr = df2["Production_power"].corr(df2["Solar_Power"])
     corr = (corr*100).round(2)
     return jsonify({"corr" : corr})
 
 @app.route('/corr2025')
 def correlation2025():
+    print('/corr2025')
     corr = df["Production_power"].corr(df["Solar_Power"])
     corr = (corr*100).round(2)
     return jsonify({ "corr" : corr})
@@ -80,6 +92,7 @@ def index():
 
 @app.route("/data2025")
 def get_data():
+    print('/data2025')
     mode = request.args.get("mode", "daily")
     if mode == "weekly":
         data = df.resample("W").agg({
@@ -105,6 +118,7 @@ def get_data():
 
 @app.route("/data2024")
 def get_data2():
+    print('/data2024')
     mode = request.args.get("mode", "daily")
     if mode == "weekly":
         data = df2.resample("W").agg({
@@ -131,6 +145,7 @@ def get_data2():
 
 @app.route("/predict", methods=['GET'])
 def predict():
+    print('/predict')
     solar = request.args.get('solar')
     temp = request.args.get('temp')
     day = request.args.get('day')
@@ -147,4 +162,5 @@ def predict():
 
 
 if __name__ == "__main__":
+    print("program started")
     serve(app, host="0.0.0.0", port=5000)
